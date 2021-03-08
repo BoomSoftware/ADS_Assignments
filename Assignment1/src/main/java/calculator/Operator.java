@@ -1,9 +1,17 @@
 package calculator;
 
 public class Operator extends Token{
-    private Operator operator;
+    private final Operation value;
+
+    public Operator(Operation value){
+        this.value = value;
+    }
 
     public void accept(CalculatorVisitor visitor) {
-        super.accept(visitor);
+        visitor.visit(this);
+    }
+
+    public Operation getValue() {
+        return value;
     }
 }

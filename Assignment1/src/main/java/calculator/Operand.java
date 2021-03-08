@@ -1,9 +1,17 @@
 package calculator;
 
 public class Operand extends Token {
-    private int value;
+    private final int value;
+
+    public Operand(int value){
+        this.value = value;
+    }
 
     public void accept(CalculatorVisitor visitor) {
-        super.accept(visitor);
+        visitor.visit(this);
+    }
+
+    public int getValue(){
+        return value;
     }
 }

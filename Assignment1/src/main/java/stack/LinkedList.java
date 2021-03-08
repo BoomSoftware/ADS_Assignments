@@ -1,6 +1,5 @@
 package stack;
 
-import exceptions.EmptyListException;
 import interfaces.List;
 
 public class LinkedList<T> implements List<T> {
@@ -10,21 +9,34 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
+
     }
 
     @Override
     public void addToFront(T data) {
+        Node<T> newNode = new Node<T>();
+        newNode.setData(data);
 
+        newNode.setNext(head);
+        head = newNode;
+        size++;
     }
 
     @Override
-    public T removeFirst() throws EmptyListException {
-        return null;
+    public T removeFirst() throws Exception {
+        if(isEmpty()){
+            throw new Exception("Error: List is empty!");
+        }
+
+        Node<T> oldHead = head;
+        head = head.getNext();
+        size--;
+        return oldHead.getData();
     }
 }

@@ -1,9 +1,7 @@
 package interfaces;
 
-import java.util.EmptyStackException;
-
 public interface Stack<T> {
     boolean isEmpty();
     void push(T element);
-    T pop() throws EmptyStackException;
+    T pop() throws Exception;
 }

@@ -2,20 +2,21 @@ package stack;
 
 public class Node<T> {
     private T data;
+    private Node<T> next;
 
     public void setData(T data) {
-
+        this.data = data;
     }
 
     public T getData() {
-        return null;
+        return data;
     }
 
     public void setNext(Node<T> node) {
-
+        this.next = node;
     }
 
     public Node<T> getNext(){
-        return null;
+        return next;
     }
 }
