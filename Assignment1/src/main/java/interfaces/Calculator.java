@@ -1,5 +1,7 @@
 package interfaces;
 
+import Exceptions.MalformedExpressionException;
+
 public interface Calculator {
-    int getResult() throws Exception;
+    int getResult() throws MalformedExpressionException;
 }

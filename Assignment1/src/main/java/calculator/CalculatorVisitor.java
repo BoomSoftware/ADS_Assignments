@@ -1,5 +1,7 @@
 package calculator;
 
+import Exceptions.EmptyStackException;
+import Exceptions.MalformedExpressionException;
 import interfaces.Calculator;
 import interfaces.Visitor;
 import stack.LinkedStack;
@@ -13,14 +15,20 @@ public class CalculatorVisitor implements Visitor, Calculator {
     }
 
     @Override
-    public int getResult() throws Exception {
-        int result = 0;
-        if(tokenStack.isEmpty()){
+    public int getResult() throws MalformedExpressionException {
+        try{
+            int result = 0;
+            if(tokenStack.isEmpty()){
+                return result;
+            }else{
+                result = ((Operand)tokenStack.pop()).getValue();
+            }
             return result;
-        }else{
-            result = ((Operand)tokenStack.pop()).getValue();
         }
-        return result;
+        catch (EmptyStackException e){
+            throw new MalformedExpressionException("Error: Inserted expression is invalid!");
+        }
+
     }
 
     @Override
@@ -40,7 +48,8 @@ public class CalculatorVisitor implements Visitor, Calculator {
 
     }
 
-    private void performOperation(Operator operator) throws Exception {
+    private void performOperation(Operator operator) throws MalformedExpressionException {
+        try{
             int right = ((Operand)tokenStack.pop()).getValue();
             int left = ((Operand)tokenStack.pop()).getValue();
 
@@ -58,13 +67,17 @@ public class CalculatorVisitor implements Visitor, Calculator {
                     break;
                 case DIVIDE:
                     if(right == 0){
-                        throw new Exception("Dividing by 0 is forbidden");
+                        throw new MalformedExpressionException("Dividing by 0 is forbidden");
                     }
                     result = left / right;
                     break;
             }
 
             pushOperand(new Operand(result));
+        }catch (EmptyStackException e) {
+            throw new MalformedExpressionException("Error: Inserted expression is invalid!");
+        }
+
     }
 
     private void pushOperand(Operand operand) {

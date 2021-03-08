@@ -1,7 +1,9 @@
 package interfaces;
 
+import Exceptions.EmptyStackException;
+
 public interface Stack<T> {
     boolean isEmpty();
     void push(T element);
-    T pop() throws Exception;
+    T pop() throws EmptyStackException;
 }

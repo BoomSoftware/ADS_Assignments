@@ -1,5 +1,6 @@
 package stack;
 
+import Exceptions.EmptyListException;
 import interfaces.List;
 
 public class LinkedList<T> implements List<T> {
@@ -29,9 +30,9 @@ public class LinkedList<T> implements List<T> {
     }
 
     @Override
-    public T removeFirst() throws Exception {
+    public T removeFirst() throws EmptyListException {
         if(isEmpty()){
-            throw new Exception("Error: List is empty!");
+            throw new EmptyListException("Error: List is empty!");
         }
 
         Node<T> oldHead = head;

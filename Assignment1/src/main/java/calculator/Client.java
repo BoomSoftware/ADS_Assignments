@@ -11,10 +11,9 @@ public class Client {
 
 
     public int evaluateExpression(ArrayList<Token> list) throws Exception {
-        for(Token token : list) {
-            token.accept(calculatorVisitor);
-        }
-
-        return calculatorVisitor.getResult();
+            for(Token token : list) {
+                token.accept(calculatorVisitor);
+            }
+            return calculatorVisitor.getResult();
     }
 }

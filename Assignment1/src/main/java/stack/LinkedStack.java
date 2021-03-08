@@ -1,5 +1,7 @@
 package stack;
 
+import Exceptions.EmptyListException;
+import Exceptions.EmptyStackException;
 import interfaces.Stack;
 
 public class LinkedStack<T> implements Stack<T> {
@@ -21,10 +23,12 @@ public class LinkedStack<T> implements Stack<T> {
     }
 
     @Override
-    public T pop() throws Exception {
-        if(list.isEmpty()) {
-            throw new Exception("Error: Stack is empty!");
+    public T pop() throws EmptyStackException {
+        try {
+            return list.removeFirst();
         }
-        return list.removeFirst();
+        catch (EmptyListException e){
+            throw new EmptyStackException("Error: Stack is empty!");
+        }
     }
 }
