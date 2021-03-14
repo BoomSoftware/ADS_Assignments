@@ -15,16 +15,41 @@ public class PostfixCalculatorTest {
     @Test
     public <T> void testIsEmpty(){
         LinkedList<T> linkedList = new LinkedList<>();
-
-        int result = linkedList.size();
-
-        assertEquals(10, 5, result);
-    }
-
-    @Test
-    public <T> void testSize(){
-        LinkedList<T> linkedList = new LinkedList<>();
         assertTrue(linkedList.isEmpty());
         assertFalse(linkedList.isEmpty());
     }
+
+    @Test
+    public <T> void testAddToFront(){
+        LinkedList<T> linkedList = new LinkedList<>();
+
+    }
+
+    @Test
+    public <T> void testRemoveFirst() {
+        LinkedList<T> linkedList = new LinkedList<>();
+
+    }
+
+    //Unit test for the LinkedStack class in the stack package
+
+    @Test
+    public <T> void testIsEmpty2(){
+        LinkedStack<T> linkedStack = new LinkedStack<>();
+        assertTrue(linkedStack.isEmpty());
+        assertFalse(linkedStack.isEmpty());
+    }
+
+    @Test
+    public <T> void testPush(){
+        LinkedStack<T> linkedStack = new LinkedStack<>();
+    }
+
+    @Test
+    public void testPop(){
+
+    }
+
+    //Unit test for Node class in the stack package.
+
 }
