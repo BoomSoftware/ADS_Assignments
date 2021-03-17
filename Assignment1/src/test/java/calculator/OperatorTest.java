@@ -11,18 +11,18 @@ class OperatorTest {
     private Operator operator;
 
     @BeforeEach
-    void setUpOperator() {
+    void testSetUpOperator() {
         operator = new Operator(Operation.ADD);
     }
 
     @Test
-    void accept() {
+    void testAccept() {
         operator = new Operator(Operation.MULTIPLY);
         Assertions.assertEquals(Operation.MULTIPLY, operator.getValue());
     }
 
     @Test
-    void getValue() {
+    void testGetValue() {
         Assertions.assertEquals(Operation.ADD, operator.getValue());
     }
 }

@@ -13,20 +13,20 @@ class OperandTest {
     private int number2;
 
     @BeforeEach
-    void setUpOperand() {
+    void testSetUpOperand() {
         number1 = 1;
         number2 = 2;
         operand = new Operand(number1);
     }
 
     @Test
-    void accept() {
+    void testAccept() {
         operand = new Operand(number2);
         Assertions.assertEquals(number2, operand.getValue());
     }
 
     @Test
-    void getValue() {
+    void testGetValue() {
         Assertions.assertEquals(number1, operand.getValue());
     }
 }
