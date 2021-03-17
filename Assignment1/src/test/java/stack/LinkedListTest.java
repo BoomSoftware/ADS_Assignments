@@ -75,13 +75,13 @@ class LinkedListTest {
     }
 
     @Test
-    void removeFirst0() {
+    void testRemoveFirst0() {
         Assertions.assertThrows(EmptyListException.class, () ->
                 linkedList.removeFirst());
     }
 
     @Test
-    void removeFirst1() throws Exception {
+    void testRemoveFirst1() throws Exception {
         Assertions.assertEquals(linkedList.size(), 0);
         linkedList.addToFront(item1);
         Assertions.assertEquals(linkedList.size(), 1);
@@ -91,7 +91,7 @@ class LinkedListTest {
     }
 
     @Test
-    void removeFirstMany() throws Exception
+    void testRemoveFirstMany() throws Exception
     {
         int firstItem;
         linkedList.addToFront(item4);
