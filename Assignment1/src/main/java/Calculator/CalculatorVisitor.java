@@ -1,29 +1,23 @@
-package calculator;
+package Calculator;
 
 import Exceptions.EmptyStackException;
 import Exceptions.MalformedExpressionException;
-import interfaces.Calculator;
-import interfaces.Visitor;
-import stack.LinkedStack;
+import Interfaces.Calculator;
+import Interfaces.Visitor;
+import Stack.LinkedStack;
 
 public class CalculatorVisitor implements Visitor, Calculator {
 
     private final LinkedStack<Token> tokenStack;
 
     public CalculatorVisitor(){
-        tokenStack = new LinkedStack<>();
+        tokenStack = new LinkedStack<Token>();
     }
 
     @Override
     public int getResult() throws MalformedExpressionException {
         try{
-            int result = 0;
-            if(tokenStack.isEmpty()){
-                return result;
-            }else{
-                result = ((Operand)tokenStack.pop()).getValue();
-            }
-            return result;
+            return ((Operand)tokenStack.pop()).getValue();
         }
         catch (EmptyStackException e){
             throw new MalformedExpressionException("Error: Inserted expression is invalid!");
@@ -50,11 +44,18 @@ public class CalculatorVisitor implements Visitor, Calculator {
 
     private void performOperation(Operator operator) throws MalformedExpressionException {
         try{
-            int right = ((Operand)tokenStack.pop()).getValue();
-            int left = ((Operand)tokenStack.pop()).getValue();
 
-            int result = 0;
+            Token tempRight = tokenStack.pop();
+            Token tempLeft = tokenStack.pop();
 
+            if(tempRight instanceof Operator || tempLeft instanceof  Operator) {
+                throw new MalformedExpressionException("Error: Inserted expression is invalid!");
+            }
+
+            int right = ((Operand) tempRight).getValue();
+            int left = ((Operand) tempLeft).getValue();
+
+            int result;
             switch (operator.getValue()) {
                 case ADD:
                     result = left + right;
@@ -71,6 +72,8 @@ public class CalculatorVisitor implements Visitor, Calculator {
                     }
                     result = left / right;
                     break;
+                default:
+                    throw new MalformedExpressionException("Error: Invalid operation type");
             }
 
             pushOperand(new Operand(result));

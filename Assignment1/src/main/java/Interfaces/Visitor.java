@@ -1,7 +1,7 @@
-package interfaces;
+package Interfaces;
 
-import calculator.Operand;
-import calculator.Operator;
+import Calculator.Operand;
+import Calculator.Operator;
 
 public interface Visitor {
     void visit(Operand operand);

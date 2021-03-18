@@ -1,11 +1,9 @@
-package stack;
+package Stack;
 
 import Exceptions.EmptyStackException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class LinkedStackTest {
 
@@ -15,67 +13,64 @@ class LinkedStackTest {
     private int item3;
 
     @BeforeEach
-    void setUp() {
-        this.linkedStack = new LinkedStack<>();
+    void setUpStack() {
+        this.linkedStack = new LinkedStack<Integer>();
         this.item1 = 1;
         this.item2 = 2;
         this.item3 = 3;
     }
 
     @Test
-    void testIsEmpty() {
-        Assertions.assertTrue(linkedStack.isEmpty());
-        Assertions.assertFalse(linkedStack.isEmpty());
-    }
-
-    @Test
-    void testPush0() {
-        Assertions.assertFalse(linkedStack.isEmpty());
-    }
-
-    @Test
-    void testPush1() {
-        Assertions.assertTrue(linkedStack.isEmpty());
+    void testIsStackEmptyFalse() {
         linkedStack.push(item1);
         Assertions.assertFalse(linkedStack.isEmpty());
     }
 
     @Test
-    void testPushMany() {
+    void testIsStackEmptyTrue() {
+        Assertions.assertTrue(linkedStack.isEmpty());
+    }
+
+    @Test
+    void testStackPushOne() throws EmptyStackException {
+        Assertions.assertTrue(linkedStack.isEmpty());
+        linkedStack.push(item1);
+        Assertions.assertFalse(linkedStack.isEmpty());
+        Assertions.assertEquals(item1, linkedStack.pop());
+    }
+
+    @Test
+    void testStackPushMany() throws EmptyStackException {
         Assertions.assertTrue(linkedStack.isEmpty());
         linkedStack.push(item1);
         linkedStack.push(item2);
         linkedStack.push(item3);
         Assertions.assertFalse(linkedStack.isEmpty());
+        Assertions.assertEquals(item3, linkedStack.pop());
     }
 
     @Test
-    void testPop0() {
+    void testPopFromEmptyStack() {
         Assertions.assertThrows(EmptyStackException.class, () ->
                 linkedStack.pop());
     }
 
     @Test
-    void testPop1() throws Exception {
+    void testStackPopOne() throws Exception {
         linkedStack.push(item1);
         Assertions.assertFalse(linkedStack.isEmpty());
-        Object object = linkedStack.pop();
-        Assertions.assertEquals(object, 1);
+        Assertions.assertEquals(item1, linkedStack.pop());
     }
 
     @Test
-    void testPopMany() throws Exception {
+    void testStackPopMany() throws Exception {
         linkedStack.push(item1);
         linkedStack.push(item2);
         linkedStack.push(item3);
 
-        Object object1 = linkedStack.pop();
-        Object object2 =  linkedStack.pop();
-        Object object3 = linkedStack.pop();
-
-        Assertions.assertEquals(object1, 1);
-        Assertions.assertEquals(object2, 2);
-        Assertions.assertEquals(object3, 3);
+        Assertions.assertEquals(item3, linkedStack.pop());
+        Assertions.assertEquals(item2, linkedStack.pop());
+        Assertions.assertEquals(item1, linkedStack.pop());
         Assertions.assertTrue(linkedStack.isEmpty());
     }
 }

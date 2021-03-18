@@ -1,10 +1,10 @@
-package calculator;
+package Calculator;
 
 public class Operator extends Token{
-    private final Operation value;
+    private final Operation operation;
 
     public Operator(Operation value){
-        this.value = value;
+        this.operation = value;
     }
 
     public void accept(CalculatorVisitor visitor) {
@@ -12,6 +12,6 @@ public class Operator extends Token{
     }
 
     public Operation getValue() {
-        return value;
+        return operation;
     }
 }

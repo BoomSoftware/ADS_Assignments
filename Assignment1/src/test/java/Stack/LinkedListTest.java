@@ -1,12 +1,9 @@
-package stack;
+package Stack;
 
 import Exceptions.EmptyListException;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class LinkedListTest {
 
@@ -18,7 +15,7 @@ class LinkedListTest {
     private int item5;
 
     @BeforeEach
-    void setUp()
+    void setUpList()
     {
         this.linkedList = new LinkedList<>();
         item1 = 1;
@@ -28,37 +25,38 @@ class LinkedListTest {
         item5 = 5;
     }
 
-    @AfterEach
-    void tearDown() {
-
-    }
-
     @Test
-    void testIsEmpty(){
-        Assertions.assertTrue(linkedList.isEmpty());
+    void testListIsEmptyFalse(){
+        linkedList.addToFront(item1);
         Assertions.assertFalse(linkedList.isEmpty());
     }
 
     @Test
-    void testSize0(){
+    void testListIsEmptyTrue(){
+        Assertions.assertTrue(linkedList.isEmpty());
+    }
+
+    @Test
+    void testListSizeZero(){
         Assertions.assertEquals(linkedList.size(), 0);
     }
 
     @Test
-    void testSize1(){
+    void testListSizeOne(){
         linkedList.addToFront(item1);
         Assertions.assertEquals(linkedList.size(), 1);
     }
 
     @Test
-    void testSizeMany(){
+    void testListSizeMany(){
         linkedList.addToFront(item3);
         linkedList.addToFront(item4);
-        Assertions.assertEquals(linkedList.size(), 2);
+        linkedList.addToFront(item5);
+        Assertions.assertEquals(linkedList.size(), 3);
     }
 
     @Test
-    void testAddToFront0(){
+    void testIsEmptyAfterAddToFrontOne(){
         Assertions.assertEquals(linkedList.size(), 0);
         linkedList.addToFront(item3);
         Assertions.assertFalse(linkedList.isEmpty());
@@ -66,7 +64,7 @@ class LinkedListTest {
     }
 
     @Test
-    void testAddToFrontMany(){
+    void testIsEmptyAfterAddToFrontMany(){
         linkedList.addToFront(item4);
         linkedList.addToFront(item5);
         linkedList.addToFront(item3);
@@ -75,24 +73,24 @@ class LinkedListTest {
     }
 
     @Test
-    void testRemoveFirst0() {
+    void testRemoveFromEmptyList() {
         Assertions.assertThrows(EmptyListException.class, () ->
                 linkedList.removeFirst());
     }
 
     @Test
-    void testRemoveFirst1() throws Exception {
+    void testIsListEmptyAfterRemoveOne() throws Exception {
         Assertions.assertEquals(linkedList.size(), 0);
         linkedList.addToFront(item1);
         Assertions.assertEquals(linkedList.size(), 1);
-        int firstElement = linkedList.removeFirst();
+        int removedElement = linkedList.removeFirst();
         Assertions.assertEquals(linkedList.size(), 0);
-        Assertions.assertEquals(item1, firstElement);
+        Assertions.assertEquals(item1, removedElement);
+        Assertions.assertTrue(linkedList.isEmpty());
     }
 
     @Test
-    void testRemoveFirstMany() throws Exception
-    {
+    void testIsListEmptyAfterRemoveMany() throws Exception {
         int firstItem;
         linkedList.addToFront(item4);
         linkedList.addToFront(item5);

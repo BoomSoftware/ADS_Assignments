@@ -1,4 +1,4 @@
-package calculator;
+package Calculator;
 
 public class Operand extends Token {
     private final int value;

@@ -1,8 +1,8 @@
-package stack;
+package Stack;
 
 import Exceptions.EmptyListException;
 import Exceptions.EmptyStackException;
-import interfaces.Stack;
+import Interfaces.Stack;
 
 public class LinkedStack<T> implements Stack<T> {
 

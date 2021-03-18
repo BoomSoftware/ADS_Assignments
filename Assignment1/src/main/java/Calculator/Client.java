@@ -1,9 +1,9 @@
-package calculator;
+package Calculator;
 
 import java.util.ArrayList;
 
 public class Client {
-    private CalculatorVisitor calculatorVisitor;
+    private final CalculatorVisitor calculatorVisitor;
 
     public Client(CalculatorVisitor calculatorVisitor){
         this.calculatorVisitor = calculatorVisitor;

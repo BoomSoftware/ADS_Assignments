@@ -1,4 +1,4 @@
-import calculator.*;
+import Calculator.*;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,7 @@
-package stack;
+package Stack;
 
 import Exceptions.EmptyListException;
-import interfaces.List;
+import Interfaces.List;
 
 public class LinkedList<T> implements List<T> {
 
