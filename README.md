@@ -6,7 +6,7 @@ Each assignment has its own directory which has the pom.xml file.
 This file contains all dependencies used in the given project. </p>
 
 <h3>Assignment 1 - Postfix calculator</h3>
-<p>The resources the postfix expression calculator is using a stack which is an abstract data structure. 
+<p>The postfix expression calculator is using a stack which is an abstract data structure. 
 To implement the stack use as underlying data structure a generic linked list. 
 In the linked list it is only necessary to implement the operations required for this assignment. 
 </p>
