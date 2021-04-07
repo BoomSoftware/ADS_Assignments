@@ -19,15 +19,15 @@ public class BinaryTree {
     }
 
     public boolean isEmpty() {
-        return false;
+        return root == null;
     }
 
-    public int size(){
-        return 0;
+    public int size() {
+        return sizeRecursive(root);
     }
 
     public boolean contains(int element) {
-        return false;
+        return containsRecursive(root, element);
     }
 
     public ArrayList<Integer> inOrder(){
@@ -43,6 +43,39 @@ public class BinaryTree {
     }
 
     public int height(){
-        return 0;
+        if(root == null){
+            return 0;
+        }
+        int leftHigh = heightRecursive(root.getLeftChild());
+        int rightHigh = heightRecursive(root.getRightChild());
+
+        if(leftHigh > rightHigh){
+            return leftHigh + 1;
+        }
+        return rightHigh + 1;
+    }
+
+    private int sizeRecursive(BinaryTreeNode node){
+        if(node == null) {
+            return 0;
+        }
+        return sizeRecursive(node.getLeftChild()) + sizeRecursive(node.getRightChild()) + 1;
+    }
+
+    private boolean containsRecursive(BinaryTreeNode node, int element) {
+        if(node == null){
+            return false;
+        }
+        if(node.getElement() == element) {
+            return true;
+        }
+        return containsRecursive(node.getLeftChild(), element) || containsRecursive(node.getRightChild(), element);
+    }
+
+    private int heightRecursive(BinaryTreeNode node){
+        if(node == null){
+            return 0;
+        }
+        return sizeRecursive(node.getLeftChild()) + 1;
     }
 }

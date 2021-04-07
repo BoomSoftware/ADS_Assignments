@@ -2,33 +2,35 @@ package tree;
 
 public class BinaryTreeNode {
 
-    private int root;
+    private int element;
+    private BinaryTreeNode leftChild;
+    private BinaryTreeNode rightChild;
 
-    public BinaryTreeNode(int root){
-        this.root = root;
+    public BinaryTreeNode(int element){
+        this.element = element;
     }
 
     public void setElement(int element){
-
+    this.element = element;
     }
 
     public int getElement() {
-        return 0;
+        return element;
     }
 
     public void addLeftChild(BinaryTreeNode node){
-
+        this.leftChild = node;
     }
 
     public void addRightChild(BinaryTreeNode node) {
-
+        this.rightChild = node;
     }
 
     public BinaryTreeNode getLeftChild() {
-        return null;
+        return leftChild;
     }
 
     public BinaryTreeNode getRightChild() {
-        return null;
+        return rightChild;
     }
 }
