@@ -11,7 +11,7 @@ public class BinaryTreeNode {
     }
 
     public void setElement(int element){
-    this.element = element;
+        this.element = element;
     }
 
     public int getElement() {
@@ -27,10 +27,16 @@ public class BinaryTreeNode {
     }
 
     public BinaryTreeNode getLeftChild() {
+        if(leftChild == null) {
+            return null;
+        }
         return leftChild;
     }
 
     public BinaryTreeNode getRightChild() {
+        if(rightChild == null) {
+            return null;
+        }
         return rightChild;
     }
 }

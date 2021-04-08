@@ -34,6 +34,10 @@ public class BinaryTree {
         return null;
     }
 
+    public ArrayList<Integer> preOrder() {
+        return null;
+    }
+
     public ArrayList<Integer> postOrder() {
         return null;
     }
