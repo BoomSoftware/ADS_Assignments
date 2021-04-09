@@ -76,5 +76,25 @@ public class BinarySearchTreeTest {
         Assertions.assertEquals(1, emptySearchTree.findMin());
     }
 
+    @Test
+    public void maxInEmptyTreeTest() {
+        Assertions.assertEquals(1, emptySearchTree.findMax());
+    }
+
+    @Test
+    public void maxInTreeWithOneElementTest() {
+        Assertions.assertEquals(50, searchTree.findMax());
+    }
+
+    @Test
+    public void maxInTreeWithManyElements() {
+        int[] elements = {9,8,7,6,5,4,3,2,1,86,47,39};
+        for (int element : elements) {
+            emptySearchTree.insert(element);
+        }
+
+        Assertions.assertEquals(86, emptySearchTree.findMax());
+    }
+
 
 }

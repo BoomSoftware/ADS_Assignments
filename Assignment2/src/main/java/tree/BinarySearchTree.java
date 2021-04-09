@@ -28,7 +28,15 @@ public class BinarySearchTree extends BinaryTree {
     }
 
     public int findMax() {
-        return 0;
+        BinaryTreeNode node = getRoot();
+        if(node == null){
+            return 1;
+        }
+
+        while(node.getRightChild() != null){
+            node = node.getRightChild();
+        }
+        return node.getElement();
     }
 
     public void rebalance() {

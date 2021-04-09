@@ -61,5 +61,6 @@ public class Main {
         System.out.println("PREORDER: " + binaryTree.preOrder().toString());
         System.out.println("POSTORDER: " + binaryTree.postOrder().toString());
         System.out.println("INORDER: " + binaryTree.inOrder().toString());
+        System.out.println("LEVELORDER: " + binaryTree.levelOrder().toString());
     }
 }

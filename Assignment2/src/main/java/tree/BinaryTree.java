@@ -46,7 +46,8 @@ public class BinaryTree {
     }
 
     public ArrayList<Integer> levelOrder() {
-        return null;
+       ArrayList<Integer> elements = new ArrayList<>();
+       return levelOrderRecursive(root, elements);
     }
 
     public int height(){
@@ -105,6 +106,17 @@ public class BinaryTree {
         inOrderRecursive(node.getLeftChild(), elements);
         elements.add(node.getElement());
         inOrderRecursive(node.getRightChild(), elements);
+        return elements;
+    }
+
+    private ArrayList<Integer> levelOrderRecursive(BinaryTreeNode node, ArrayList<Integer> elements){
+        if(node == null) {
+            return null;
+        }
+        elements.add(node.getElement());
+        levelOrderRecursive(node.getLeftChild(), elements);
+        levelOrderRecursive(node.getRightChild(), elements);
+        elements.add(node.getElement());
         return elements;
     }
 }

@@ -301,6 +301,39 @@ public class BinaryTreeTest {
         Assertions.assertEquals(elements, treeWithOneElement.postOrder());
     }
 
+    /*
+    LevelOrder tests
+     */
+
+    @Test
+    public void levelOrderTreeTest()
+    {
+        ArrayList<Integer> elements = new ArrayList<>();
+        elements.add(22);
+        elements.add(41);
+        elements.add(14);
+        elements.add(19);
+        elements.add(34);
+        elements.add(16);
+        elements.add(11);
+        elements.add(66);
+        elements.add(17);
+        Assertions.assertEquals(elements, tree.levelOrder());
+    }
+
+    @Test
+    public void levelOrderInEmptyTreeTest()
+    {
+        Assertions.assertNull(emptyTree.levelOrder());
+    }
+
+    @Test
+    public void levelOrderInOneElementTreeTest()
+    {
+        ArrayList<Integer> elements = new ArrayList<>();
+        elements.add(50);
+        Assertions.assertEquals(elements, treeWithOneElement.levelOrder());
+    }
 
     /*
     Setup
