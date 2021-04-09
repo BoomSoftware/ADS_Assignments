@@ -78,7 +78,7 @@ public class BinarySearchTreeTest {
 
     @Test
     public void maxInEmptyTreeTest() {
-        Assertions.assertEquals(1, emptySearchTree.findMax());
+        Assertions.assertEquals(-1, emptySearchTree.findMax());
     }
 
     @Test

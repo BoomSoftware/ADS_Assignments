@@ -1,6 +1,8 @@
 package tree;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class BinaryTree {
 
@@ -47,13 +49,12 @@ public class BinaryTree {
 
     public ArrayList<Integer> levelOrder() {
        ArrayList<Integer> elements = new ArrayList<>();
-       return levelOrderRecursive(root, elements);
+       return levelOrderQueue(root, elements);
     }
 
     public int height(){
         return heightRecursive(root);
     }
-
 
     private int sizeRecursive(BinaryTreeNode node){
         if(node == null) {
@@ -109,14 +110,26 @@ public class BinaryTree {
         return elements;
     }
 
-    private ArrayList<Integer> levelOrderRecursive(BinaryTreeNode node, ArrayList<Integer> elements){
-        if(node == null) {
+    private ArrayList<Integer> levelOrderQueue(BinaryTreeNode node, ArrayList<Integer> elements){
+        if(node == null ) {
             return null;
         }
-        elements.add(node.getElement());
-        levelOrderRecursive(node.getLeftChild(), elements);
-        levelOrderRecursive(node.getRightChild(), elements);
-        elements.add(node.getElement());
+
+        Queue<BinaryTreeNode> queue = new LinkedList<>();
+        queue.add(node);
+
+        while (!queue.isEmpty()) {
+            BinaryTreeNode currentNode = queue.poll();
+            elements.add(currentNode.getElement());
+
+            if(currentNode.getLeftChild() != null) {
+                queue.add(currentNode.getLeftChild());
+            }
+
+            if(currentNode.getRightChild() != null) {
+                queue.add(currentNode.getRightChild());
+            }
+        }
         return elements;
     }
 }

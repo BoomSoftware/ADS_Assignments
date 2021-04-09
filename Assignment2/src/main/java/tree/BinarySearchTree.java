@@ -30,7 +30,7 @@ public class BinarySearchTree extends BinaryTree {
     public int findMax() {
         BinaryTreeNode node = getRoot();
         if(node == null){
-            return 1;
+            return -1;
         }
 
         while(node.getRightChild() != null){

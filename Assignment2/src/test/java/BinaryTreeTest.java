@@ -15,9 +15,13 @@ public class BinaryTreeTest {
     private BinaryTreeNode treeRoot;
     private BinaryTreeNode treeWithOneElementRoot;
 
+    private ArrayList<Integer> elements;
+
     @BeforeEach
     public void prepareTrees()
     {
+        elements = new ArrayList<>();
+
         prepareTree();
         prepareEmptyTree();
         prepareFullTree();
@@ -204,16 +208,10 @@ public class BinaryTreeTest {
     @Test
     public void inOrderInTreeTest()
     {
-        ArrayList<Integer> elements = new ArrayList<>();
-        elements.add(19);
-        elements.add(14);
-        elements.add(34);
-        elements.add(41);
-        elements.add(16);
-        elements.add(22);
-        elements.add(66);
-        elements.add(11);
-        elements.add(17);
+        int[] inOrder = {19, 14, 34, 41, 16, 22, 66, 11, 17};
+        for(int element: inOrder){
+            elements.add(element);
+        }
         Assertions.assertEquals(elements, tree.inOrder());
     }
 
@@ -226,7 +224,6 @@ public class BinaryTreeTest {
     @Test
     public void inOrderInOneElementTreeTest()
     {
-        ArrayList<Integer> elements = new ArrayList<>();
         elements.add(50);
         Assertions.assertEquals(elements, treeWithOneElement.inOrder());
     }
@@ -239,16 +236,10 @@ public class BinaryTreeTest {
     @Test
     public void preOrderInTreeTest()
     {
-        ArrayList<Integer> elements = new ArrayList<>();
-        elements.add(22);
-        elements.add(41);
-        elements.add(14);
-        elements.add(19);
-        elements.add(34);
-        elements.add(16);
-        elements.add(11);
-        elements.add(66);
-        elements.add(17);
+        int[] preOrder = {22, 41, 14, 19, 34, 16, 11, 66, 17};
+        for(int element: preOrder){
+            elements.add(element);
+        }
         Assertions.assertEquals(elements, tree.preOrder());
     }
 
@@ -261,7 +252,6 @@ public class BinaryTreeTest {
     @Test
     public void preOrderInOneElementTreeTest()
     {
-        ArrayList<Integer> elements = new ArrayList<>();
         elements.add(50);
         Assertions.assertEquals(elements, treeWithOneElement.preOrder());
     }
@@ -274,16 +264,10 @@ public class BinaryTreeTest {
     @Test
     public void postOrderInTreeTest()
     {
-        ArrayList<Integer> elements = new ArrayList<>();
-        elements.add(19);
-        elements.add(34);
-        elements.add(14);
-        elements.add(16);
-        elements.add(41);
-        elements.add(66);
-        elements.add(17);
-        elements.add(11);
-        elements.add(22);
+        int[] postOrder = {19, 34, 14, 16, 41, 66, 17, 11, 22};
+        for(int element : postOrder){
+            elements.add(element);
+        }
         Assertions.assertEquals(elements, tree.postOrder());
     }
 
@@ -296,10 +280,10 @@ public class BinaryTreeTest {
     @Test
     public void postOrderInOneElementTree()
     {
-        ArrayList<Integer> elements = new ArrayList<>();
         elements.add(50);
         Assertions.assertEquals(elements, treeWithOneElement.postOrder());
     }
+
 
     /*
     LevelOrder tests
@@ -308,16 +292,10 @@ public class BinaryTreeTest {
     @Test
     public void levelOrderTreeTest()
     {
-        ArrayList<Integer> elements = new ArrayList<>();
-        elements.add(22);
-        elements.add(41);
-        elements.add(14);
-        elements.add(19);
-        elements.add(34);
-        elements.add(16);
-        elements.add(11);
-        elements.add(66);
-        elements.add(17);
+        int[] levelOrder = {22, 41, 11, 14, 16, 66, 17, 19, 34};
+        for(int element : levelOrder){
+            elements.add(element);
+        }
         Assertions.assertEquals(elements, tree.levelOrder());
     }
 
@@ -330,7 +308,6 @@ public class BinaryTreeTest {
     @Test
     public void levelOrderInOneElementTreeTest()
     {
-        ArrayList<Integer> elements = new ArrayList<>();
         elements.add(50);
         Assertions.assertEquals(elements, treeWithOneElement.levelOrder());
     }
