@@ -31,15 +31,18 @@ public class BinaryTree {
     }
 
     public ArrayList<Integer> inOrder(){
-        return null;
+        ArrayList<Integer> elements = new ArrayList<>();
+        return inOrderRecursive(root, elements);
     }
 
     public ArrayList<Integer> preOrder() {
-        return null;
+        ArrayList<Integer> elements = new ArrayList<>();
+        return preOrderRecursive(root, elements);
     }
 
     public ArrayList<Integer> postOrder() {
-        return null;
+        ArrayList<Integer> elements = new ArrayList<>();
+        return postOrderRecursive(root, elements);
     }
 
     public ArrayList<Integer> levelOrder() {
@@ -47,17 +50,9 @@ public class BinaryTree {
     }
 
     public int height(){
-        if(root == null){
-            return 0;
-        }
-        int leftHigh = heightRecursive(root.getLeftChild());
-        int rightHigh = heightRecursive(root.getRightChild());
-
-        if(leftHigh > rightHigh){
-            return leftHigh + 1;
-        }
-        return rightHigh + 1;
+        return heightRecursive(root);
     }
+
 
     private int sizeRecursive(BinaryTreeNode node){
         if(node == null) {
@@ -77,9 +72,39 @@ public class BinaryTree {
     }
 
     private int heightRecursive(BinaryTreeNode node){
-        if(node == null){
+        if(node == null || (node.getLeftChild() == null && node.getRightChild() == null)){
             return 0;
         }
-        return sizeRecursive(node.getLeftChild()) + 1;
+        return Math.max(heightRecursive(node.getLeftChild()), heightRecursive(node.getRightChild())) + 1;
+    }
+
+    private ArrayList<Integer> preOrderRecursive(BinaryTreeNode node, ArrayList<Integer> elements){
+        if(node == null) {
+            return null;
+        }
+        elements.add(node.getElement());
+        preOrderRecursive(node.getLeftChild(), elements);
+        preOrderRecursive(node.getRightChild(), elements);
+        return elements;
+    }
+
+    private ArrayList<Integer> postOrderRecursive(BinaryTreeNode node, ArrayList<Integer> elements) {
+        if(node == null) {
+            return null;
+        }
+        postOrderRecursive(node.getLeftChild(), elements);
+        postOrderRecursive(node.getRightChild(), elements);
+        elements.add(node.getElement());
+        return elements;
+    }
+
+    private ArrayList<Integer> inOrderRecursive(BinaryTreeNode node, ArrayList<Integer> elements){
+        if(node == null) {
+            return null;
+        }
+        inOrderRecursive(node.getLeftChild(), elements);
+        elements.add(node.getElement());
+        inOrderRecursive(node.getRightChild(), elements);
+        return elements;
     }
 }
