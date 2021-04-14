@@ -41,5 +41,6 @@ public class Main {
         System.out.println("POSTORDER: " + binarySearchTree.postOrder().toString());
         System.out.println("INORDER: " + binarySearchTree.inOrder().toString());
         System.out.println("LEVELORDER: " + binarySearchTree.levelOrder().toString());
+        System.out.println("REMOVE ELEMENT: "+ binarySearchTree.removeElement(19).toString());
     }
 }
