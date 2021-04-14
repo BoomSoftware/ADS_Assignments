@@ -42,12 +42,14 @@ public class BinarySearchTree extends BinaryTree {
         return node.getElement();
     }
 
-    public void rebalance() {
+
+    public void rebalance()
+    {
         int end = inOrder().size() - 1;
         setRoot(rebalance(inOrder(), 0, end));
     }
-
-    private BinaryTreeNode rebalance(ArrayList<Integer> inOrder, int start, int end) {
+    private BinaryTreeNode rebalance(ArrayList<Integer> inOrder, int start, int end)
+    {
         if(start > end) {
             return null;
         }
@@ -59,7 +61,17 @@ public class BinarySearchTree extends BinaryTree {
         node.addRightChild(rebalance(inOrder, mid+1, end));
         return node;
     }
-
+//    public int rebalance(BinaryTreeNode node) {
+////        if (node == null) return 0;
+////        int h1 = rebalance(node.getLeftChild());
+////        int h2 = rebalance(node.getRightChild());
+////
+////        if (h1 == -1 || h2 == -1) return -1;
+////        if (Math.abs(h1 - h2) > 1) return -1;
+////
+////        if (h1 > h2) return h1 + 1;
+////        return h2 + 1;
+//    }
 
     private void insertRecursive(BinaryTreeNode node, BinaryTreeNode newNode) {
         if (node == null) {
@@ -113,7 +125,15 @@ public class BinarySearchTree extends BinaryTree {
     }
 }
 
-
+//            } else if (root.getLeftChild() == null || root.getRightChild() == null) {
+//                root = root.getLeftChild() == null ? root.getRightChild() : root.getLeftChild();
+//            } else {
+//                BinaryTreeNode parent = (findMax(root.getLeftChild()));
+//                int temp = parent.getElement();
+//                parent.getElement() = root.getElement();
+//                root.getElement() = temp;
+//                root.getLeftChild() = removeRecursive(root.getLeftChild(), parent.getElement());
+//            }
 
 
 
