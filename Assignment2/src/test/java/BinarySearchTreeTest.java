@@ -4,10 +4,13 @@ import org.junit.jupiter.api.Test;
 import tree.BinarySearchTree;
 import tree.BinaryTreeNode;
 
+import java.util.ArrayList;
+
 public class BinarySearchTreeTest {
 
     private BinarySearchTree emptySearchTree;
     private BinarySearchTree searchTree;
+    private BinaryTreeNode root;
 
     @BeforeEach
     public void prepareSearchTrees() {
@@ -97,10 +100,51 @@ public class BinarySearchTreeTest {
     }
 
     @Test
-    public void removeElement()
+    public void removeLeafNode()
     {
-
+        searchTree.removeElement(1);
+        Assertions.assertFalse(searchTree.contains(1));
+        Assertions.assertNull(root.getLeftChild().getLeftChild().getLeftChild());
     }
 
+    @Test
+    public void removeNodeWithOneChild()
+    {
+        searchTree.insert(7);
+        searchTree.removeElement(6);
+        Assertions.assertFalse(searchTree.contains(6));
+        Assertions.assertEquals(7, root.getRightChild().getRightChild().getElement());
+        Assertions.assertNull(root.getRightChild().getRightChild().getRightChild());
+    }
+
+    @Test
+    public void removeNodeWithTwoChildren()
+    {
+        Assertions.assertEquals(5, root.getRightChild().getLeftChild().getElement());
+        searchTree.removeElement(4);
+        Assertions.assertFalse(searchTree.contains(4));
+        Assertions.assertEquals(5, root.getElement());
+        Assertions.assertEquals(6, root.getRightChild().getElement());
+        Assertions.assertNull(root.getRightChild().getLeftChild());
+        Assertions.assertEquals(7, root.getRightChild().getRightChild().getElement());
+    }
+
+    @Test
+    public void rebalance()
+    {
+        searchTree.removeElement(5);
+        searchTree.rebalance();
+        ArrayList<Integer> preOrder  = new ArrayList<>();
+        preOrder.add(3);
+        preOrder.add(2);
+        preOrder.add(1);
+        preOrder.add(2);
+        preOrder.add(6);
+        preOrder.add(4);
+        preOrder.add(7);
+        preOrder.add(8);
+        Assertions.assertEquals(preOrder, searchTree.preOrder());
+
+    }
 
 }

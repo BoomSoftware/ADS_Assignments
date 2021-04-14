@@ -1,5 +1,7 @@
 package tree;
 
+import java.util.ArrayList;
+
 public class BinarySearchTree extends BinaryTree {
     BinaryTreeNode root;
 
@@ -29,7 +31,7 @@ public class BinarySearchTree extends BinaryTree {
     }
 
     public int findMax() {
-        BinaryTreeNode node = getRoot();
+       BinaryTreeNode node = getRoot();
         if (node == null) {
             return -1;
         }
@@ -40,17 +42,24 @@ public class BinarySearchTree extends BinaryTree {
         return node.getElement();
     }
 
-    public int rebalance(BinaryTreeNode node) {
-        if (node == null) return 0;
-        int h1 = rebalance(node.getLeftChild());
-        int h2 = rebalance(node.getRightChild());
-
-        if (h1 == -1 || h2 == -1) return -1;
-        if (Math.abs(h1 - h2) > 1) return -1;
-
-        if (h1 > h2) return h1 + 1;
-        return h2 + 1;
+    public void rebalance() {
+        int end = inOrder().size() - 1;
+        setRoot(rebalance(inOrder(), 0, end));
     }
+
+    private BinaryTreeNode rebalance(ArrayList<Integer> inOrder, int start, int end) {
+        if(start > end) {
+            return null;
+        }
+        int mid = (start + end)/2;
+        BinaryTreeNode node = new BinaryTreeNode(inOrder.get(mid));
+
+        node.addLeftChild(rebalance(inOrder, start, mid-1));
+
+        node.addRightChild(rebalance(inOrder, mid+1, end));
+        return node;
+    }
+
 
     private void insertRecursive(BinaryTreeNode node, BinaryTreeNode newNode) {
         if (node == null) {
@@ -85,15 +94,29 @@ public class BinarySearchTree extends BinaryTree {
         } else {
             if (root.getLeftChild() == null && root.getRightChild() == null) {
                 root = null;
-            } else if (root.getLeftChild() == null || root.getRightChild() == null) {
-                root = root.getLeftChild() == null ? root.getRightChild() : root.getLeftChild();
-            } else {
-                BinaryTreeNode parent = (findMax(root.getLeftChild()));
-                int temp = parent.getElement();
-                parent.getElement() = root.getElement();
-                root.getElement() = temp;
-                root.getLeftChild() = removeRecursive(root.getLeftChild(), parent.getElement());
             }
+                else if(root.getLeftChild() != null && root.getRightChild() != null)
+                {
+                    int successor = findMin(root.getRightChild());
+                    root.setElement(successor);
+
+                    root.addRightChild(removeRecursive(root.getRightChild(), successor));
+                }
+                else if(root.getLeftChild() != null && root.getRightChild() == null)
+                    root = root.getLeftChild();
+                else if(root.getRightChild() != null && root.getLeftChild() == null)
+                    root = root.getRightChild();
+
+// Here I tried to do it differently but still doesn't work so I tried to do it like Ana but still got an error
+//
+//                            } else if (root.getLeftChild() == null || root.getRightChild() == null) {
+//                root = root.getLeftChild() == null ? root.getRightChild() : root.getLeftChild();
+//            } else {
+//                BinaryTreeNode parent = root.getLeftChild().getElement(findMax());
+//                int temp = parent.getElement();
+//                parent.getElement() = root.getElement();
+//                root.getElement() = temp;
+//                root.getLeftChild() = removeRecursive(root.getLeftChild(), parent.getElement());
 
         }
         return root;
