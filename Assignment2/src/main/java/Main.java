@@ -33,7 +33,7 @@ public class Main {
         BinaryTreePrint binaryTreePrint = new BinaryTreePrint();
         binaryTreePrint.printTree(binarySearchTree.getRoot());
 
-        binarySearchTree.removeElement(14);
+        binarySearchTree.removeElement(17);
 
         binaryTreePrint.printTree(binarySearchTree.getRoot());
 
