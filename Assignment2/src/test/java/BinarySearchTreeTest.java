@@ -96,5 +96,11 @@ public class BinarySearchTreeTest {
         Assertions.assertEquals(86, emptySearchTree.findMax());
     }
 
+    @Test
+    public void removeElement()
+    {
+
+    }
+
 
 }
