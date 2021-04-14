@@ -33,6 +33,10 @@ public class Main {
         BinaryTreePrint binaryTreePrint = new BinaryTreePrint();
         binaryTreePrint.printTree(binarySearchTree.getRoot());
 
+        binarySearchTree.removeElement(14);
+
+        binaryTreePrint.printTree(binarySearchTree.getRoot());
+
         System.out.println("\n\nSIZE: " + binarySearchTree.size());
         System.out.println("HEIGHT: " + binarySearchTree.height());
         System.out.println("MIN ELEMENT: " + binarySearchTree.findMin());
@@ -41,6 +45,6 @@ public class Main {
         System.out.println("POSTORDER: " + binarySearchTree.postOrder().toString());
         System.out.println("INORDER: " + binarySearchTree.inOrder().toString());
         System.out.println("LEVELORDER: " + binarySearchTree.levelOrder().toString());
-        System.out.println("REMOVE ELEMENT: "+ binarySearchTree.removeElement(19).toString());
+//        System.out.println("REMOVE ELEMENT: "+ binarySearchTree.removeElement(19).toString());
     }
 }

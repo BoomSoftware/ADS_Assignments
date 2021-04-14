@@ -111,7 +111,6 @@ public class BinarySearchTree extends BinaryTree {
             {
                 int successor = findMinForRemove(root.getRightChild());
                 root.setElement(successor);
-
                 root.addRightChild(removeRecursive(root.getRightChild(), successor));
             }
             else if(root.getLeftChild() != null && root.getRightChild() == null)
