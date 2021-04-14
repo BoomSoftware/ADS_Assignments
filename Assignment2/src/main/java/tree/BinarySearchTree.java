@@ -109,7 +109,7 @@ public class BinarySearchTree extends BinaryTree {
             }
             else if(root.getLeftChild() != null && root.getRightChild() != null)
             {
-                int successor = findMin(root.getRightChild());
+                int successor = findMinForRemove(root.getRightChild());
                 root.setElement(successor);
 
                 root.addRightChild(removeRecursive(root.getRightChild(), successor));
@@ -122,6 +122,15 @@ public class BinarySearchTree extends BinaryTree {
         }
         return root;
 
+    }
+
+    private int findMinForRemove(BinaryTreeNode root){
+        int value = root.getElement();
+        while (root.getLeftChild() != null){
+            value = root.getLeftChild().getElement();
+            root = root.getLeftChild();
+        }
+        return value;
     }
 }
 

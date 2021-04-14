@@ -1,5 +1,6 @@
 import tree.BinarySearchTree;
 import tree.BinaryTreeNode;
+import tree.BinaryTreePrint;
 
 public class Main {
     public static void main(String[] args) {

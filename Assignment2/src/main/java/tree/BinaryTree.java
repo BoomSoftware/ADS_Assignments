@@ -110,7 +110,7 @@ public class BinaryTree {
         return elements;
     }
 
-    private ArrayList<Integer> levelOrderQueue(BinaryTreeNode node, ArrayList<Integer> elements){
+    private ArrayList<Integer> levelOrderQueue(BinaryTreeNode node, ArrayList<Integer> elements) {
         if(node == null ) {
             return null;
         }
