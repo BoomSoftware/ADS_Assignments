@@ -28,8 +28,8 @@ public class BinaryTreeNode {
 
     public BinaryTreeNode getLeftChild() {
         if(leftChild == null) {
-        return null;
-       }
+            return null;
+        }
         return leftChild;
     }
 

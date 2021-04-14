@@ -31,7 +31,7 @@ public class BinarySearchTree extends BinaryTree {
     }
 
     public int findMax() {
-       BinaryTreeNode node = getRoot();
+        BinaryTreeNode node = getRoot();
         if (node == null) {
             return -1;
         }
@@ -95,28 +95,17 @@ public class BinarySearchTree extends BinaryTree {
             if (root.getLeftChild() == null && root.getRightChild() == null) {
                 root = null;
             }
-                else if(root.getLeftChild() != null && root.getRightChild() != null)
-                {
-                    int successor = findMin(root.getRightChild());
-                    root.setElement(successor);
+            else if(root.getLeftChild() != null && root.getRightChild() != null)
+            {
+                int successor = findMin(root.getRightChild());
+                root.setElement(successor);
 
-                    root.addRightChild(removeRecursive(root.getRightChild(), successor));
-                }
-                else if(root.getLeftChild() != null && root.getRightChild() == null)
-                    root = root.getLeftChild();
-                else if(root.getRightChild() != null && root.getLeftChild() == null)
-                    root = root.getRightChild();
-
-// Here I tried to do it differently but still doesn't work so I tried to do it like Ana but still got an error
-//
-//                            } else if (root.getLeftChild() == null || root.getRightChild() == null) {
-//                root = root.getLeftChild() == null ? root.getRightChild() : root.getLeftChild();
-//            } else {
-//                BinaryTreeNode parent = root.getLeftChild().getElement(findMax());
-//                int temp = parent.getElement();
-//                parent.getElement() = root.getElement();
-//                root.getElement() = temp;
-//                root.getLeftChild() = removeRecursive(root.getLeftChild(), parent.getElement());
+                root.addRightChild(removeRecursive(root.getRightChild(), successor));
+            }
+            else if(root.getLeftChild() != null && root.getRightChild() == null)
+                root = root.getLeftChild();
+            else if(root.getRightChild() != null && root.getLeftChild() == null)
+                root = root.getRightChild();
 
         }
         return root;
