@@ -8,7 +8,7 @@ public class BinaryTreeNode {
 
     public BinaryTreeNode(int element){
         this.element = element;
-        leftChild=rightChild=null;
+        //leftChild=rightChild=null;
     }
 
     public void setElement(int element){
