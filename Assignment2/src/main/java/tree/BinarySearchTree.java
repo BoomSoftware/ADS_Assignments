@@ -62,17 +62,7 @@ public class BinarySearchTree extends BinaryTree {
         node.addRightChild(rebalance(inOrder, mid + 1, end));
         return node;
     }
-//    public int rebalance(BinaryTreeNode node) {
-////        if (node == null) return 0;
-////        int h1 = rebalance(node.getLeftChild());
-////        int h2 = rebalance(node.getRightChild());
-////
-////        if (h1 == -1 || h2 == -1) return -1;
-////        if (Math.abs(h1 - h2) > 1) return -1;
-////
-////        if (h1 > h2) return h1 + 1;
-////        return h2 + 1;
-//    }
+
 
     private void insertRecursive(BinaryTreeNode node, BinaryTreeNode newNode) {
         if (node == null) {
@@ -139,12 +129,6 @@ public class BinarySearchTree extends BinaryTree {
         if (rr < r)
             r = rr;
         return r;
-//        int value = root.getElement();
-//        while (root.getLeftChild() != null){
-//            value = root.getLeftChild().getElement();
-//            root = root.getLeftChild();
-//        }
-//        return value;
     }
 }
 
