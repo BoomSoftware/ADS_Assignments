@@ -7,6 +7,8 @@ public class BinarySearchTree extends BinaryTree {
 
     public BinarySearchTree(BinaryTreeNode root) {
         super(root);
+        this.root = root;
+
     }
 
 
@@ -15,7 +17,7 @@ public class BinarySearchTree extends BinaryTree {
     }
 
     public void removeElement(int element) {
-        this.root = removeRecursive(this.root, element);
+         removeElement(root, element);
     }
 
     public int findMin() {
@@ -95,49 +97,58 @@ public class BinarySearchTree extends BinaryTree {
         }
     }
 
-    private BinaryTreeNode removeRecursive(BinaryTreeNode root, int element) {
-        if (root == null) {
+    private BinaryTreeNode removeElement(BinaryTreeNode root, int element) {
+        if(root == null)
             return null;
-        } else if (element < root.getElement()) {
-            root.addLeftChild(removeRecursive(root.getLeftChild(), element));
-        } else if (element > root.getElement()) {
-            root.addRightChild(removeRecursive(root.getRightChild(), element));
-        } else if (root.getLeftChild() != null && root.getRightChild() != null) {
-            int successor = findMinForRemove(root.getRightChild());
-            root.setElement(successor);
-            root.addRightChild(removeRecursive(root.getRightChild(), successor));
-        } else if (root.getLeftChild() != null && root.getRightChild() == null) {
-            root = root.getLeftChild();
-        } else if (root.getRightChild() != null && root.getLeftChild() == null){
-            root = root.getRightChild();
-
-    }
-    return root;
-}
-
-
-
-
-
-    private int findMinForRemove(BinaryTreeNode root){
-        int value = root.getElement();
-        while (root.getLeftChild() != null){
-            value = root.getLeftChild().getElement();
-            root = root.getLeftChild();
+        if(element<root.getElement()) {
+            root.addLeftChild(removeElement(root.getLeftChild(), element));
+        }else if(element>root.getElement())
+        {
+            root.addRightChild(removeElement(root.getRightChild(), element));
         }
-        return value;
+        else
+        {
+            if(root.getLeftChild() == null && root.getRightChild() == null) {
+                root = null;
+            }
+            else if(root.getLeftChild() != null && root.getRightChild() != null)
+            {
+                int successor = findMinForRemove(root.getRightChild());
+                root.setElement(successor);
+
+                root.addRightChild(removeElement(root.getRightChild(), successor));
+            }
+            else if(root.getLeftChild() != null && root.getRightChild() == null)
+                root = root.getLeftChild();
+            else if(root.getRightChild() != null && root.getLeftChild() == null)
+                root = root.getRightChild();
+        }
+        return root;
+    }
+
+    private int findMinForRemove(BinaryTreeNode node){
+        if (node == null)
+            return Integer.MAX_VALUE;
+
+        int r = node.getElement();
+        int lr = findMinForRemove(node.getLeftChild());
+        int rr = findMinForRemove(node.getRightChild());
+
+        if (lr < r)
+            r = lr;
+        if (rr < r)
+            r = rr;
+        return r;
+//        int value = root.getElement();
+//        while (root.getLeftChild() != null){
+//            value = root.getLeftChild().getElement();
+//            root = root.getLeftChild();
+//        }
+//        return value;
     }
 }
 
-//            } else if (root.getLeftChild() == null || root.getRightChild() == null) {
-//                root = root.getLeftChild() == null ? root.getRightChild() : root.getLeftChild();
-//            } else {
-//                BinaryTreeNode parent = (findMax(root.getLeftChild()));
-//                int temp = parent.getElement();
-//                parent.getElement() = root.getElement();
-//                root.getElement() = temp;
-//                root.getLeftChild() = removeRecursive(root.getLeftChild(), parent.getElement());
-//            }
+
 
 
 
