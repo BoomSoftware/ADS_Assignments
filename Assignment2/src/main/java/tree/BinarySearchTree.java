@@ -44,19 +44,19 @@ public class BinarySearchTree extends BinaryTree {
 
     public void rebalance() {
         int end = inOrder().size() - 1;
-        setRoot(rebalance(inOrder(), 0, end));
+        setRoot(rebalanceRecursive(inOrder(), 0, end));
     }
 
-    private BinaryTreeNode rebalance(ArrayList<Integer> inOrder, int start, int end) {
+    private BinaryTreeNode rebalanceRecursive(ArrayList<Integer> inOrder, int start, int end) {
         if (start > end) {
             return null;
         }
         int mid = (start + end) / 2;
         BinaryTreeNode node = new BinaryTreeNode(inOrder.get(mid));
 
-        node.addLeftChild(rebalance(inOrder, start, mid - 1));
+        node.addLeftChild(rebalanceRecursive(inOrder, start, mid - 1));
 
-        node.addRightChild(rebalance(inOrder, mid + 1, end));
+        node.addRightChild(rebalanceRecursive(inOrder, mid + 1, end));
         return node;
     }
 
