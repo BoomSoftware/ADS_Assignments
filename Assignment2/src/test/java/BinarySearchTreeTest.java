@@ -10,28 +10,28 @@ public class BinarySearchTreeTest {
 
     private BinarySearchTree emptySearchTree;
     private BinarySearchTree searchTree;
-    private BinaryTreeNode TreeRoot;
-    private BinarySearchTree node;
+    private BinaryTreeNode treeRoot;
+    private BinarySearchTree tree;
 
     @BeforeEach
     public void prepareSearchTrees() {
         emptySearchTree = new BinarySearchTree(null);
         searchTree = new BinarySearchTree(new BinaryTreeNode(50));
 
-        TreeRoot = new BinaryTreeNode(5);
-        TreeRoot.addLeftChild(new BinaryTreeNode(8));
-        TreeRoot.addRightChild(new BinaryTreeNode(6));
+        treeRoot = new BinaryTreeNode(5);
+        treeRoot.addLeftChild(new BinaryTreeNode(8));
+        treeRoot.addRightChild(new BinaryTreeNode(6));
 
-        TreeRoot.getLeftChild().addLeftChild(new BinaryTreeNode(4));
-        TreeRoot.getLeftChild().addRightChild(new BinaryTreeNode(3));
+        treeRoot.getLeftChild().addLeftChild(new BinaryTreeNode(4));
+        treeRoot.getLeftChild().addRightChild(new BinaryTreeNode(3));
 
-        TreeRoot.getLeftChild().getLeftChild().addLeftChild(new BinaryTreeNode(1));
-        TreeRoot.getLeftChild().getLeftChild().addRightChild(new BinaryTreeNode(2));
+        treeRoot.getLeftChild().getLeftChild().addLeftChild(new BinaryTreeNode(1));
+        treeRoot.getLeftChild().getLeftChild().addRightChild(new BinaryTreeNode(2));
 
-        TreeRoot.getRightChild().addLeftChild(new BinaryTreeNode(2));
-        TreeRoot.getRightChild().addRightChild(new BinaryTreeNode(7));
+        treeRoot.getRightChild().addLeftChild(new BinaryTreeNode(2));
+        treeRoot.getRightChild().addRightChild(new BinaryTreeNode(7));
 
-        node = new BinarySearchTree(TreeRoot);
+        tree = new BinarySearchTree(treeRoot);
     }
     @Test
     public void insertElementInEmptyTreeTest(){
@@ -116,38 +116,38 @@ public class BinarySearchTreeTest {
     @Test
     public void removeLeafNode()
     {
-        node.removeElement(1);
-        Assertions.assertFalse(node.contains(1));
-        Assertions.assertNull(TreeRoot.getLeftChild().getLeftChild().getLeftChild());
+        tree.removeElement(1);
+        Assertions.assertFalse(tree.contains(1));
+        Assertions.assertNull(treeRoot.getLeftChild().getLeftChild().getLeftChild());
     }
 
     @Test
     public void removeNodeWithOneChild()
     {
-        node.insert(9);
-        node.removeElement(7);
-        Assertions.assertFalse(node.contains(7));
-        Assertions.assertEquals(9, TreeRoot.getRightChild().getRightChild().getElement());
-        Assertions.assertNull(TreeRoot.getRightChild().getRightChild().getRightChild());
+        tree.insert(9);
+        tree.removeElement(7);
+        Assertions.assertFalse(tree.contains(7));
+        Assertions.assertEquals(9, treeRoot.getRightChild().getRightChild().getElement());
+        Assertions.assertNull(treeRoot.getRightChild().getRightChild().getRightChild());
     }
 
     @Test
     public void removeNodeWithTwoChildren()
     {
-        Assertions.assertEquals(2, TreeRoot.getRightChild().getLeftChild().getElement());
-        node.removeElement(5);
-        Assertions.assertFalse(node.contains(5));
-        Assertions.assertEquals(2, TreeRoot.getElement());
-        Assertions.assertEquals(6, TreeRoot.getRightChild().getElement());
-        Assertions.assertNull(TreeRoot.getRightChild().getLeftChild());
-        Assertions.assertEquals(7, TreeRoot.getRightChild().getRightChild().getElement());
+        Assertions.assertEquals(2, treeRoot.getRightChild().getLeftChild().getElement());
+        tree.removeElement(5);
+        Assertions.assertFalse(tree.contains(5));
+        Assertions.assertEquals(2, treeRoot.getElement());
+        Assertions.assertEquals(6, treeRoot.getRightChild().getElement());
+        Assertions.assertNull(treeRoot.getRightChild().getLeftChild());
+        Assertions.assertEquals(7, treeRoot.getRightChild().getRightChild().getElement());
     }
 
     @Test
     public void rebalance()
     {
-        node.removeElement(5);
-        node.rebalance();
+        tree.removeElement(5);
+        tree.rebalance();
         ArrayList<Integer> preOrder  = new ArrayList<>();
         preOrder.add(8);
         preOrder.add(4);
@@ -157,7 +157,7 @@ public class BinarySearchTreeTest {
         preOrder.add(3);
         preOrder.add(6);
         preOrder.add(7);
-        Assertions.assertEquals(preOrder, node.preOrder());
+        Assertions.assertEquals(preOrder, tree.preOrder());
 
     }
 

@@ -3,12 +3,9 @@ package tree;
 import java.util.ArrayList;
 
 public class BinarySearchTree extends BinaryTree {
-    BinaryTreeNode root;
 
     public BinarySearchTree(BinaryTreeNode root) {
         super(root);
-        this.root = root;
-
     }
 
 
@@ -17,7 +14,7 @@ public class BinarySearchTree extends BinaryTree {
     }
 
     public void removeElement(int element) {
-         removeElement(root, element);
+         removeElement(getRoot(), element);
     }
 
     public int findMin() {
@@ -87,13 +84,13 @@ public class BinarySearchTree extends BinaryTree {
         }
     }
 
-    private BinaryTreeNode removeElement(BinaryTreeNode root, int element) {
+    private BinaryTreeNode removeElement(BinaryTreeNode root, int element) { ;
         if(root == null)
             return null;
-        if(element<root.getElement()) {
+        if(element < root.getElement()) {
             root.addLeftChild(removeElement(root.getLeftChild(), element));
-        }else if(element>root.getElement())
-        {
+        }
+        else if(element > root.getElement()) {
             root.addRightChild(removeElement(root.getRightChild(), element));
         }
         else
