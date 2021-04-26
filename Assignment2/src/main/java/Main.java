@@ -27,9 +27,8 @@ public class Main {
         System.out.println("INORDER: " + binarySearchTree.inOrder().toString());
         System.out.println("LEVELORDER: " + binarySearchTree.levelOrder().toString());
 
-//        binarySearchTree.removeElement(7);
-//        binarySearchTree.removeElement(9);
         binarySearchTree.rebalance();
+
 
         binaryTreePrint.printTree(binarySearchTree.getRoot());
 
