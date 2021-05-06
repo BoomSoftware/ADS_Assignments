@@ -1,27 +1,21 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class QueenProblem {
 
-    private int[][] board;
-    private int boardSize;
+    private final int[][] board;
+    private final int boardSize;
+    private List<int[][]> resultList;
 
     public QueenProblem(int boardSize){
         this.boardSize = boardSize;
         board = new int[boardSize][boardSize];
     }
 
-    public void printResult(){
-        displayHorizontalLine();
-        for(int column = 0; column < boardSize ; column++){
-            for(int row = 0 ; row < boardSize; row++){
-                System.out.print("| " + getSignRepresentation(board[row][column]) + " ");
-                if(row == boardSize - 1){
-                    System.out.print("|");
-                }
-            }
-            System.out.println();
-            displayHorizontalLine();
-
-        }
-        System.out.print("\n");
+    public List<int[][]> solve() {
+        resultList = new ArrayList<>();
+        solveBacktrack(0);
+        return resultList;
     }
 
     private void displayHorizontalLine(){
@@ -34,24 +28,44 @@ public class QueenProblem {
         System.out.println();
     }
 
+    public void printResult(List<int[][]> boards){
+        if(boards.isEmpty()){
+            System.out.println("No solution exit!");
+            return;
+        }
+
+        for(int[][]resultBoard : boards){
+            displayHorizontalLine();
+            for(int column = 0; column < boardSize ; column++){
+                for(int row = 0 ; row < boardSize; row++){
+                    System.out.print("| " + getSignRepresentation(resultBoard[row][column]) + " ");
+                    if(row == boardSize - 1){
+                        System.out.print("|");
+                    }
+                }
+                System.out.println();
+                displayHorizontalLine();
+            }
+            System.out.print("\n");
+        }
+    }
+
     private String getSignRepresentation(int sign){
         if(sign == 1){
-            return "1";
+            return "Q";
         }
         return " ";
     }
 
-    public void solve(){
-        if(boardSize <= 3){
-            System.out.println("No existing solution for this size of board");
-        }
-        solveBacktrack(0);
-    }
-
-
     private boolean solveBacktrack(int column){
         if(column >= boardSize) {
-            printResult();
+            int[][] temp = new int[boardSize][boardSize];
+            for(int i = 0 ; i < boardSize ; i++){
+                for(int j = 0 ; j < boardSize ; j++){
+                    temp[i][j] = board[i][j];
+                }
+            }
+            resultList.add(temp);
         }
 
         for(int i = 0; i < boardSize; i++){
@@ -68,7 +82,6 @@ public class QueenProblem {
     }
 
     private boolean isPlaceOkay(int row, int column){
-
         for(int i = 0 ; i < column; i++){
             if(board[row][i] == 1)
                 return false;
@@ -94,5 +107,4 @@ public class QueenProblem {
     private void removeTempQueen(int row, int column){
         board[row][column] = 0;
     }
-
 }
